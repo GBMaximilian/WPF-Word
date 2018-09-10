@@ -1,0 +1,16 @@
+C:\Users\straa\source\repos\TryToWork\TryToWork\bin\Debug\TryToWork.exe.config
+C:\Users\straa\source\repos\TryToWork\TryToWork\bin\Debug\TryToWork.exe
+C:\Users\straa\source\repos\TryToWork\TryToWork\bin\Debug\TryToWork.pdb
+C:\Users\straa\source\repos\TryToWork\TryToWork\obj\Debug\TryToWork.csprojAssemblyReference.cache
+C:\Users\straa\source\repos\TryToWork\TryToWork\obj\Debug\MainWindow.g.cs
+C:\Users\straa\source\repos\TryToWork\TryToWork\obj\Debug\App.g.cs
+C:\Users\straa\source\repos\TryToWork\TryToWork\obj\Debug\TryToWork_MarkupCompile.cache
+C:\Users\straa\source\repos\TryToWork\TryToWork\obj\Debug\TryToWork_MarkupCompile.lref
+C:\Users\straa\source\repos\TryToWork\TryToWork\obj\Debug\MainWindow.baml
+C:\Users\straa\source\repos\TryToWork\TryToWork\obj\Debug\TryToWork.g.resources
+C:\Users\straa\source\repos\TryToWork\TryToWork\obj\Debug\TryToWork.Properties.Resources.resources
+C:\Users\straa\source\repos\TryToWork\TryToWork\obj\Debug\TryToWork.csproj.GenerateResource.cache
+C:\Users\straa\source\repos\TryToWork\TryToWork\obj\Debug\TryToWork.csproj.CoreCompileInputs.cache
+C:\Users\straa\source\repos\TryToWork\TryToWork\obj\Debug\TryToWork.exe
+C:\Users\straa\source\repos\TryToWork\TryToWork\obj\Debug\TryToWork.pdb
+C:\Users\straa\source\repos\TryToWork\TryToWork\obj\Debug\TryToWork.csproj.ResolveComReference.cache
