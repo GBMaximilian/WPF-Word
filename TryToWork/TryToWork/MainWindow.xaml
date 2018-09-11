@@ -16,7 +16,7 @@
             </FlowDocument>
         </RichTextBox>
         <Button x:Name="button1" Content="Button" HorizontalAlignment="Left" Margin="111,10,0,0" VerticalAlignment="Top" Width="75" Click="button1_Click"/>
-        <RichTextBox x:Name="richTextBox1" HorizontalAlignment="Left" Height="100" Margin="10,299,0,0" VerticalAlignment="Top" Width="477">
+        <RichTextBox x:Name="richTextBox1" Margin="10,299,306.6,21">
             <FlowDocument>
                 <Paragraph>
                     <Run Text="RichTextBox"/>

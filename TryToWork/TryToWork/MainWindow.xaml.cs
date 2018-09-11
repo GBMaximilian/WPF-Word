@@ -38,7 +38,6 @@ namespace TryToWork
             }
             catch { MessageBox.Show("произошла ошибка"); }
         }
-
         public string Open(Word.Application word_app)
         {
             var openFileDialog1 = new OpenFileDialog();
@@ -47,7 +46,6 @@ namespace TryToWork
             string filename = openFileDialog1.FileName;
             return filename;
         }
-
         public void KolontitulV(Word.Document word_doc)
         {
             foreach (Word.Section section in word_doc.Sections)
@@ -60,8 +58,20 @@ namespace TryToWork
                 headerRange.Text = "Верхний колонтитул" + Environment.NewLine + "www.CSharpCoderR.com";
             }
         }
+        public void KolontikulN(Word.Document word_doc)
+        {
+            foreach (Word.Section wordSection in word_doc.Sections)
+            {
+                Word.Range footerRange = wordSection.Footers[Word.WdHeaderFooterIndex.wdHeaderFooterPrimary].Range;
 
-        public void addText( Word.Document word_doc, string Text)
+                footerRange.Font.ColorIndex = Word.WdColorIndex.wdDarkRed;
+                footerRange.Font.Size = 10;
+                footerRange.ParagraphFormat.Alignment =
+                Word.WdParagraphAlignment.wdAlignParagraphCenter;
+                footerRange.Text = "Нижний колонтитул" + Environment.NewLine + "www.CSharpCoderR.com";
+            }
+        }
+        public void addText(Word.Document word_doc, string Text)
         {
             var para = word_doc.Paragraphs.Add();
 
@@ -88,8 +98,45 @@ namespace TryToWork
             para.Range.Text += Text;
             para.Range.InsertParagraphAfter();
         }
-
-
+        public void SearchFragment(Word.Document word_doc)
+        {
+            //Посмотреть весь документ
+            Object start = 0;
+            Object end = word_doc.Characters.Count;
+            Word.Range wordrange = word_doc.Range(ref start, ref end);
+            wordrange.TextRetrievalMode.IncludeHiddenText = false;
+            wordrange.TextRetrievalMode.IncludeFieldCodes = false;
+            MessageBox.Show(wordrange.Text);
+            richTextBox1.Selection.Text = wordrange.Text;
+            //Посмотреть фразу
+            string sText = "mon";
+            int beginphrase = 0;
+            beginphrase = wordrange.Text.IndexOf(sText);
+            MessageBox.Show(Convert.ToString(beginphrase));//
+            start = beginphrase;
+            end = beginphrase + sText.Length;
+            wordrange = word_doc.Range(ref start, ref end);
+            MessageBox.Show(wordrange.Text);
+            //richTextBox1.Selection.Text = wordrange.Text + " Найденный текст начинается с позиции: " + Convert.ToString(beginphrase);
+        }
+        public void vInsertNumberPages(int viWhere, bool bPageFirst, Word.Document word_doc, Word.Application word_app)
+        {
+            object alignment = Word.WdPageNumberAlignment.wdAlignPageNumberCenter;
+            object bFirstPage = bPageFirst;
+            object bF = true;
+            // создаём коллонтитулы            
+            word_doc.ActiveWindow.ActivePane.View.SeekView = Word.WdSeekView.wdSeekCurrentPageFooter;
+            switch (viWhere)
+            {
+                case 1:
+                    alignment = Word.WdPageNumberAlignment.wdAlignPageNumberRight;
+                    break;
+                case 2:
+                    alignment = Word.WdPageNumberAlignment.wdAlignPageNumberLeft;
+                    break;
+            }
+            word_app.Selection.HeaderFooter.PageNumbers.Add(ref alignment, ref bFirstPage);
+        }
 
     }
     /// <summary>
@@ -106,10 +153,12 @@ namespace TryToWork
         {
             MW Docum = new MW();
             Docum.wordDoc = Docum.word_app.Documents.Open(Docum.Open(Docum.word_app));
-            Docum.addText(Docum.wordDoc, /*richTextBox.Selection.Text*/"sdfghj");
+            //Docum.addText(Docum.wordDoc, /*richTextBox.Selection.Text*/"sdfghj");
             Docum.KolontitulV(Docum.wordDoc);
-            Docum.Save(Docum.wordDoc, Docum.word_app);
-
+            Docum.vInsertNumberPages(1, false, Docum.wordDoc, Docum.word_app);
+            //Docum.KolontikulN(Docum.wordDoc);
+            Docum.Save(Docum.wordDoc, Docum.word_app);            
+            Close();
         }
 
 
@@ -123,8 +172,10 @@ namespace TryToWork
 
             var wordDoc = word_app.Documents.Open(filename);
 
-            ReplaceWordStub("{}", textBox.Text, wordDoc);
-            SAVE(wordDoc, word_app);
+            Search(wordDoc);
+            Close();
+            //ReplaceWordStub("{}", textBox.Text, wordDoc);
+            //SAVE(wordDoc, word_app);
         }
 
 
@@ -227,6 +278,28 @@ namespace TryToWork
             range.Find.Execute(FindText: stubToReplace, ReplaceWith: text);
 
         }
+        private void Search(Word.Document word_doc)
+        {
+            //Посмотреть весь документ
+            Object start = 0;
+            Object end = word_doc.Characters.Count;
+            Word.Range wordrange = word_doc.Range(ref start, ref end);
+            wordrange.TextRetrievalMode.IncludeHiddenText = false;
+            wordrange.TextRetrievalMode.IncludeFieldCodes = false;
+            MessageBox.Show(wordrange.Text);
+            richTextBox1.Selection.Text = wordrange.Text;
+            //Посмотреть фразу
+            string sText = "mon";
+            int beginphrase = 0;
+            beginphrase = wordrange.Text.IndexOf(sText);
+            MessageBox.Show(Convert.ToString(beginphrase));//
+            start = beginphrase;
+            end = beginphrase + sText.Length;
+            wordrange = word_doc.Range(ref start, ref end);
+            MessageBox.Show(wordrange.Text);
+            //richTextBox1.Selection.Text = wordrange.Text + " Найденный текст начинается с позиции: " + Convert.ToString(beginphrase);
+        }
+
 
        
     }
